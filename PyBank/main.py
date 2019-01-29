@@ -10,7 +10,7 @@ myAverageList = []
 
 TotalMonths = 0
 FinalBalance = 0
-SumAverages = 0
+SumDifferences = 0
 AverageChange = 0
 
 MaxDate = ""
@@ -32,7 +32,7 @@ with open(csvpath, newline="", encoding="utf-8") as csvfile:
         FinalBalance = FinalBalance + int(row[1])
         change = int(myBalanceList[int(len(myBalanceList)) - 1]) - int(myBalanceList[int(len(myBalanceList)) - 2])
         myAverageList.append(change)
-        SumAverages = SumAverages + change
+        SumDifferences = SumDifferences + change
         if change > MaxProfit:
             MaxProfit = change
             MaxDate = row[0]
@@ -44,7 +44,7 @@ with open(csvpath, newline="", encoding="utf-8") as csvfile:
         
          
 TotalMonths = len(myMonthList)
-AverageChange = SumAverages / (len(myAverageList) - 1)
+AverageChange = SumDifferences / (len(myAverageList) - 1)
 
 print("Financial Analysis")
 print("----------------------------")

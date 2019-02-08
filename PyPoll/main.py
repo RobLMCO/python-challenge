@@ -36,6 +36,9 @@ with open(output_txt_file, "w") as textfile:
     candidates = []
     n = 0
     TotalVotes = 0
+
+    # Use the Counter method to add up the total votes in the collection of votes
+    # We did this already in the function file to collection call 
     from collections import Counter
     for name in voting:
         for x in sorted(Counter(name).items()):
@@ -43,11 +46,16 @@ with open(output_txt_file, "w") as textfile:
             candidates.append(x[1][1])
             
     #print(candidates)
+
+    # Use an iterator method from the more_itertools module to make a list of the unique candidates
     from  more_itertools import unique_everseen
     candidatenames = list(unique_everseen(candidates))
     #print(candidatenames)
+    # Count the number of candidates in the candidate list
     candidatecount = len(candidatenames)
     #print(f"There are {candidatecount} candidates")
+    
+    # Make a dictionary of the candidate names and tally all of thier votes as results
     from collections import defaultdict
     results = dict()
     for i in candidatenames:

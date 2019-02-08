@@ -4,6 +4,8 @@ import csv
 
 csvHeaderList = ["Date", "Profit/Losses", "Change"]
 
+# Define Variables
+
 myMonthList = []
 myBalanceList = []
 myAverageList = []
@@ -24,7 +26,7 @@ with open(csvpath, newline="", encoding="utf-8") as csvfile:
     csv_HeaderRow = next(csvreader)
    
     
-    
+    # Build lists of the months and balances, calculate the final balance, sum of differences, and the Max/Min profits
 
     for row in csvreader:
         myMonthList.append(row[0])
@@ -42,15 +44,16 @@ with open(csvpath, newline="", encoding="utf-8") as csvfile:
         
         
         
-         
+# Calculate the Average Change         
 TotalMonths = len(myMonthList)
 AverageChange = SumDifferences / (len(myAverageList) - 1)
 
+# Output the results
 print("Financial Analysis")
 print("----------------------------")
 print("Total Months: {}".format(TotalMonths))
 print("Total: ${}".format(FinalBalance))
-print("Average Change: ${}".format(AverageChange))
+print("Average Change: ${:0.2f}".format(AverageChange))
 #print("Sum of Averages: ${}".format(SumAverages))
 print("Greatest Increase in Profits: {} (${})".format(MaxDate, MaxProfit))
 print("Greatest Decrease in Profits: {} (${})".format(MinDate, MinProfit))
@@ -65,7 +68,7 @@ with open(output_txt_file, "w") as textfile:
     textfile.writelines("---------------------------- \n")
     textfile.writelines("Total Months: {} \n".format(TotalMonths))
     textfile.writelines("Total: ${} \n".format(FinalBalance))
-    textfile.writelines("Average Change: ${} \n".format(AverageChange))
+    textfile.writelines("Average Change: ${:0.2f} \n".format(AverageChange))
     textfile.writelines("Greatest Increase in Profits: {} (${}) \n".format(MaxDate, MaxProfit))
     textfile.writelines("Greatest Decrease in Profits: {} (${}) \n".format(MinDate, MinProfit))
     textfile.close()
